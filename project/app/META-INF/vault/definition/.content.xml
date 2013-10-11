@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:vlt="http://www.day.com/jcr/vault/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="vlt:PackageDefinition"
+    cqVersion="5.4"
+        providerName="Adobe Systems"
+        testedWith="CQ 5.4 GA"
+        providerUrl="http://www.adobe.com">
+    <thumbnail.png/>
+</jcr:root>

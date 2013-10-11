@@ -1,0 +1,3 @@
+<%@include file="../global.jsp" %>
+
+This is the default content...

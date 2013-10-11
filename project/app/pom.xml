@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- ====================================================================== -->
+	<!-- P A R E N T -->
+	<!-- ====================================================================== -->
+
+	<parent>
+		<artifactId>parent</artifactId>
+		<groupId>com.myproject</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../parent</relativePath>
+	</parent>
+
+	<!-- ====================================================================== -->
+	<!-- P R O J E C T D E S C R I P T I O N -->
+	<!-- ====================================================================== -->
+
+	<artifactId>myproject-app</artifactId>
+	<name>app</name>
+	<description>This Package contains the application code</description>
+	<packaging>content-package</packaging>
+
+
+	<!-- ====================================================================== -->
+	<!-- B U I L D D E F I N I T I O N -->
+	<!-- ====================================================================== -->
+	<build>
+		<resources>
+			<!-- exclude .vlt control files and tests -->
+			<resource>
+				<directory>jcr_root</directory>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>**/.vlt</exclude>
+					<exclude>**/.vltignore</exclude>
+					<exclude>**/*.iml</exclude>
+					<exclude>**/.classpath</exclude>
+					<exclude>**/.project</exclude>
+					<exclude>**/.DS_Store</exclude>
+					<exclude>**/target/**</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<plugins>
+
+			<plugin>
+				<groupId>com.day.jcr.vault</groupId>
+				<artifactId>content-package-maven-plugin</artifactId>
+				<extensions>true</extensions>
+				<version>0.0.20</version>
+				<configuration>
+					<failOnError>true</failOnError>
+					<verbose>true</verbose>
+					<filters>
+						<filter>
+							<root>/apps/myproject</root>
+						</filter>
+					</filters>
+					<embeddeds>
+						<embedded>
+							<groupId>com.myproject</groupId>
+							<artifactId>myproject-core</artifactId>
+							<target>/apps/myproject/install</target>
+						</embedded>
+					</embeddeds>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>install</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.apache.sling</groupId> -->
+<!-- 				<artifactId>maven-jspc-plugin</artifactId> -->
+<!-- 			</plugin> -->
+
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.codehaus.mojo</groupId> -->
+<!-- 				<artifactId>xml-maven-plugin</artifactId> -->
+<!-- 			</plugin> -->
+
+
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.sling
+										</groupId>
+										<artifactId>
+											maven-jspc-plugin
+										</artifactId>
+										<versionRange>
+											[2.0.4-incubator,)
+										</versionRange>
+										<goals>
+											<goal>jspc</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<!-- ====================================================================== -->
+	<!-- D E P E N D E N C I E S -->
+	<!-- ====================================================================== -->
+	<dependencies>
+		<dependency>
+			<groupId>com.myproject</groupId>
+			<artifactId>myproject-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.day.cq</groupId>
+			<artifactId>cq-rewriter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.adobe.granite</groupId>
+			<artifactId>com.adobe.granite.ui.commons</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.day.cq.wcm</groupId>
+			<artifactId>cq-wcm-taglib</artifactId>
+		</dependency>
+<dependency>
+	<groupId>com.adobe.granite</groupId>
+	<artifactId>com.adobe.granite.xssprotection</artifactId>
+</dependency>		
+		<dependency>
+			<groupId>com.day.cq</groupId>
+			<artifactId>cq-tagging</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.day.cq</groupId>
+			<artifactId>cq-personalization</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.adobe.granite</groupId>
+			<artifactId>com.adobe.granite.i18n</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.day.cq.collab</groupId>
+			<artifactId>cq-collab-commons</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.day.cq.collab</groupId>
+			<artifactId>cq-collab-blog</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.day.cq.collab</groupId>
+			<artifactId>cq-collab-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.adobe.granite</groupId>
+			<artifactId>com.adobe.granite.xssprotection</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.sling</groupId>
+			<artifactId>org.apache.sling.scripting.jsp.taglib</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.sling</groupId>
+			<artifactId>org.apache.sling.atom.taglib</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.sling</groupId>
+			<artifactId>org.apache.sling.scripting.jsp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.day.commons</groupId>
+			<artifactId>day-commons-jstl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.day.commons</groupId>
+			<artifactId>day-commons-gfx</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.day.commons</groupId>
+			<artifactId>day-commons-io</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.jcr</groupId>
+			<artifactId>jcr</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.sling</groupId>
+			<artifactId>org.apache.sling.engine</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.sling</groupId>
+			<artifactId>org.apache.sling.commons.json</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+	</dependencies>
+
+	<!-- ====================================================================== -->
+	<!-- R E P O R T I N G -->
+	<!-- ====================================================================== -->
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.6.1</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+
+</project>
